@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
+import 'dart:convert';
 
 class Loading extends StatefulWidget {
   @override
@@ -6,46 +8,24 @@ class Loading extends StatefulWidget {
 }
 
 class _LoadingState extends State<Loading> {
-  bool bIsLoaded = false;
+
+  void getData() async {
+    Response response = await get('https://jsonplaceholder.typicode.com/todos/1');
+    Map data = jsonDecode(response.body);
+    print(data);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+
+
   @override
   Widget build(BuildContext context) {
-    if(!bIsLoaded)
-    {
-      Future.delayed(const Duration(seconds: 10), () {
-        setState(() {
-          bIsLoaded = true;
-        });
-      });
-    }
     return Scaffold(
-      appBar: AppBar(
-        title: Text("MyApp"),
-        centerTitle: true,
-      ),
-      body: Column(
-        children: <Widget>[
-          Center(
-            child: loadMenu(context, bIsLoaded)
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-Widget loadMenu(BuildContext context, bool bIsLoaded)
-{
-  if (!bIsLoaded)
-  {
-    return Text("loading...");
-  }
-  else
-  {
-    return RaisedButton(
-      child: Text("Home"),
-      onPressed: () {
-        Navigator.pushNamed(context, "/home");
-      },
+      body: Text("Loading...")
     );
   }
 }
