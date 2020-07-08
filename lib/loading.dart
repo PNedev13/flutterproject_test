@@ -8,6 +8,7 @@ class Loading extends StatefulWidget {
 
 class _LoadingState extends State<Loading> {
   String current_time;
+  String someOtherString = "Debug";
   Future<void> setupWorldTime() async {
     WorldTime instance = WorldTime(location : "Berlin",
                                     flag: "germany.png",
@@ -15,6 +16,7 @@ class _LoadingState extends State<Loading> {
     await instance.getTime();
     setState(() {
       current_time = instance.time;
+      someOtherString = "READY";
     });
   }
 
@@ -28,7 +30,10 @@ class _LoadingState extends State<Loading> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Text("Loading... time: $current_time"),
+      appBar: AppBar(
+        title: Text("MyTestApp"),
+      ),
+      body: Text("Loading... $someOtherString time: $current_time"),
     );
   }
 }
