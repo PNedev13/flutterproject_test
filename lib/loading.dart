@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutterproject_test/services/world_time.dart';
-
 import 'services/world_time.dart';
 
 class Loading extends StatefulWidget {
