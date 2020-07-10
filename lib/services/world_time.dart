@@ -12,11 +12,13 @@ class WorldTime {
 
   Future<void> getTime() async {
 
-    Response response = await get("http://worldtimeapi.org/api/timezone/$location_url");
+    Response response = await get("http://worldtimeapi.org/api/timezone/Europe/Sofia");
     Map      data     = jsonDecode(response.body);
 
     String datetime   = data["datetime"];
     String offset     = data["utc_offset"].substring(1, 3);
+
+    print(data);
 
     DateTime now      = DateTime.parse(datetime);
     now               = now.add(Duration(hours: int.parse(offset)));

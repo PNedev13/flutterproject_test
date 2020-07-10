@@ -9,7 +9,7 @@ class Loading extends StatefulWidget {
 class _LoadingState extends State<Loading> {
   String current_time;
   String someOtherString = "Debug";
-  Future<void> setupWorldTime() async {
+  void setupWorldTime() async {
     WorldTime instance = WorldTime(location : "Berlin",
                                     flag: "germany.png",
                                     location_url: "Europe/Berlin");
